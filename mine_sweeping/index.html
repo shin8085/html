@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>mine_sweeping</title>
+        <link rel="stylesheet" type="text/css" href="./index.css">
+    </head>
+    <body>
+        <div class="title">
+            <div>
+                <span>扫雷</span>
+            </div>
+        </div>
+        <div class="option">
+            <div class="optionCen">
+                <div class="l">
+                    <span>难度</span>
+                    <select onclick="chooseLevel(this)">
+                        <option value="1">1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <div class="finish">
+                    <div>
+                        <button onclick="Finish()">完成</button>
+                    </div>
+                </div>
+                <div class="r">
+                    <button onclick="resetGame()">重新开始</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="boom_flag">
+                <div class="boom l"></div>
+                <div class="flag r"></div>
+            </div>
+        </div>
+        <div>
+            <div class="mineMap" id="mineMap">
+                <div class="_map"></div>
+            </div>
+        </div>
+        <div class="info">
+            <div class="win" hidden="true">
+                <div>
+                    <span>你赢了</span>
+                </div>
+            </div>
+            <div class="lose" hidden="ture">
+                <div>
+                    <span>你输了</span>
+                </div>
+            </div>
+        </div>
+        <script src="./mineSweeping.js"></script>
+    </body>
+</html>

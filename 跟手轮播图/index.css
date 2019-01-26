@@ -1,0 +1,52 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+.tranimg{
+    width:100%;
+    overflow: hidden;
+    background-color: grey;
+    position: relative;
+}
+
+.imgul{
+    list-style:none;
+    width:300%;
+}
+
+/*回到文本流*/
+.imgul::after{
+    content: "";
+    display: block;
+    clear:both;
+} 
+.imgli{
+    width: 375px;;
+    float:left;
+}
+.imgli img{ 
+    width:100%;
+    /* height: 187.5px; */
+    display: block;
+}
+
+.point{
+    position: absolute;
+    bottom: 10px;
+    left:50%;
+    transform: translateX(-50%); /* 自身的50% */
+    list-style: none;
+}
+.lipoint{
+    height: 8px;
+    width:8px;
+    float:left;
+    background-color: white;
+    margin:0 5px;
+    border-radius: 100px; /* 圆角 */
+    opacity: 0.2; /* 透明度 */
+}
+.lipoint.active{
+    opacity: 1;
+}

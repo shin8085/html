@@ -1,0 +1,22 @@
+*{
+    margin:0;
+    padding:0;
+}
+.barone{
+    width:100%;
+    height:60px;
+    background-color: beige;
+    position: fixed;
+    top:-60px;
+    transition: all 3.s linear;
+}
+.bartwo{
+    width:100%;
+    height:60px;
+    background-color: aquamarine;
+    position: absolute;
+    top:100px;
+}
+.barone.active{
+    top:0px;
+}
