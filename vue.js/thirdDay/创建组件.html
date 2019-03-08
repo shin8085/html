@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue2.6.8.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-com1></my-com1>
+        <mycom2></mycom2>
+        <mycom3></mycom3>
+        <mycom4></mycom4>
+    </div>
+
+    <template id="tmp1">
+        <div>
+            <h1>这是通过template元素，在外部定义的组件结构</h1>
+        </div>
+    </template>
+    <script>
+
+        //创建全局组件
+        //1
+        var com1=Vue.extend({
+            template:'<h3>使用Vue.extend创建的组件</h3>' //指定了组件要展示的html结构
+        });
+        Vue.component('myCom1',com1); //使用驼峰命名，则使用时使用-代替大写，如my-com1,否则不用
+
+        Vue.component('mycom2',Vue.extend({
+            template:'<h3>使用Vue.extend创建的组件</h3>' //指定了组件要展示的html结构
+        }));
+
+        //2
+        Vue.component('mycom3',{
+            template:'<h3>直接使用component</h3>'
+        })
+
+
+        //3
+        Vue.component('mycom4',{
+            template: '#tmp1'
+        })
+        
+
+
+        var vm=new Vue({
+            el:"#app",
+            data:{
+
+            },
+            methods: {
+                
+            }
+        })
+    </script>
+</body>
+</html>

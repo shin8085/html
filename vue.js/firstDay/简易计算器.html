@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue2.6.8.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model:value="n1">
+
+        <select v-model="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        
+        <input type="text" v-model:value="n2">
+        <input type="button" value="=" v-on:click="getResult">
+        <input type="text" v-bind:value="result">
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                n1:null,
+                n2:null,
+                result:null,
+                opt:'+'
+            },
+            methods: {
+                getResult(){
+/*                     switch(this.opt){
+                        case '+':this.result=parseFloat(this.n1)+parseFloat(this.n2);break;
+                        case '-':this.result=parseFloat(this.n1)-parseFloat(this.n2);break;
+                        case '*':this.result=parseFloat(this.n1)*parseFloat(this.n2);break;
+                        case '/':this.result=parseFloat(this.n1)/parseFloat(this.n2);break;
+                    } */
+                    var codestr="parseFloat(this.n1)"+this.opt+"parseFloat(this.n2)";
+                    this.result=eval(codestr);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

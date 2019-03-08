@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <p v-cloak>{{ msg }}</p>
+        <p v-text="msg"></p>
+        <p v-html="h1"></p>
+        <input type="button" value="按钮" v-bind:title="msg"> <!--v-bind:绑定属性 缩写:-->
+        <input type="button" value="按钮2" v-bind:title="msg" v-on:click="show"> <!-- 绑定事件 缩写@ -->
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                msg:"hello",
+                h1:"<h1>how old are you</h1>"
+            },
+            methods: {
+                show:function(){
+                    alert("hello");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

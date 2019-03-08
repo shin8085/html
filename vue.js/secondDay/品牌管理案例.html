@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue2.6.8.js"></script>
+    <link rel="stylesheet" href="../lib/bootstrap.css">
+</head>
+<body>
+    <div id="app">
+
+        
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加品牌</h3>
+            </div>
+            <div class="panel-body form-inline">
+                
+                <label>
+                    id:
+                    <input type="text" class="form-control" v-model="id" v-focus>
+                </label>
+                <label>
+                    Name:
+                    <input type="text" class="form-control" v-model="name" @keyup.enter="add">
+                </label>
+                <label>
+                    <input type="button" value="添加" class="btn btn-primary" @click="add">
+                </label>
+                <label>
+                    搜索名词关键字:
+                    <input type="text" class="form-control" v-model="keyWords" v-color="'blue'">
+                </label>
+            </div>
+        </div>
+        
+
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in search(keyWords)" v-bind:key="item.id">
+                    <td scope="row">{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.time | dateFormat }}</td>
+                    <td>
+                        <a href="" @click.prevent="del(item.id)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <h2>{{ getDate() }}{{ nowtime | dateFormat }}</h2>
+        </div>
+    </div>
+    <script>
+        //全局过滤器
+        //Vue.filter('过滤器名称'function(){})
+        Vue.filter('dateFormat',function(date){
+            var dt=new Date(date);
+            var y=dt.getFullYear().toString().padStart(2,'0'); //padStart补0
+            var m=dt.getMonth().toString().padStart(2,'0');
+            var d=dt.getDate().toString().padStart(2,'0');
+            var h=dt.getHours().toString().padStart(2,'0');
+            var m=dt.getMinutes().toString().padStart(2,'0');
+            var s=dt.getSeconds().toString().padStart(2,'0');
+            return y+"-"+m+"-"+d+' '+h+':'+m+':'+s;
+        })
+
+        //定义全局指令
+        //Vue.directive('指令名称',{钩子函数})
+        Vue.directive('focus',{
+            bind:function(){ //当指令绑定到元素上时，会执行这个函数，只执行一次
+                
+             },
+            inserted:function(el){ //当元素插入到DOM中时，会执行这个函数
+                el.focus();
+            },
+            updated:function(){ //当VNode更新时，会触发这个函数
+
+            }
+        })
+
+        Vue.directive('color',{
+            bind:function(el,binding){
+                el.style.color=binding.value;
+            }
+        })
+
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                keyWords:'',
+                id:"",
+                name:'',
+                nowtime:new Date(),
+                list:[
+                    {id:1,name:"宝马",time:new Date()},
+                    {id:2,name:"奔驰",time:new Date()}
+                ]
+            },
+            methods: {
+                add(){
+                    this.list.push({id:this.id,name:this.name,time:new Date()});
+                    this.id='';
+                    this.name='';
+                },
+                del(id){
+                    var index=this.list.findIndex(item=>{
+                        if(item.id==id){
+                            return true;
+                        }
+                    });
+                    this.list.splice(index,1);
+                },
+                search(keywords){
+                    var newList=[];
+                    this.list.forEach(item => {
+                        if(item.name.indexOf(keywords)!=-1){
+                            newList.push(item);
+                        }
+                    });
+                    return newList;
+                },
+                getDate(){
+                    setInterval(() => {
+                       this.nowtime=new Date();
+                    }, 900);
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="run" onclick="run()">
+        <h1 id="deng">这是一个跑马灯哈哈哈哈</h1>
+    </div>
+    <script>
+        function run(){
+            var deng=document.getElementById('deng');
+            var start=deng.textContent.substring(0,1);
+            var end=deng.textContent.substring(1);
+            deng.textContent=end+start;
+        }      
+        
+        
+    </script>
+</body>
+</html>

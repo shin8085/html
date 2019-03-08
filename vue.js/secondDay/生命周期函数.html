@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue2.6.8.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                msg:'ok'
+            },
+            methods: {
+                show(){
+                    alert("执行了show方法")
+                }
+            },
+            beforeCreate () { //生命周期函数，实例被完全创建出来之前会执行它
+                //data和methods还没有初始化
+            },
+            created () { //生命周期函数， data和methods都已经被初始化
+                 this.show();
+            },
+            beforeMount () { //生命周期函数，模板已经在内存中编辑完成了，但还没渲染到页面中去，即页面中的元素还没被vue替换
+                
+            },
+            mounted () { //生命周期函数，表示模板已经被渲染到页面中去
+                //创建期间的最后一个生命周期函数
+                 
+            },
+
+            beforeUpdate () { //data被更新时（此时页面还未更新）
+                
+            },
+            updated () { //页面和data中的数据已经保持同步（都是最新的）
+                
+            }
+        })
+    </script>
+</body>
+</html>

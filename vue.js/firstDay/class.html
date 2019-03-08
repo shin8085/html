@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../lib/vue2.6.8.js"></script>
+    <style>
+        .red{
+            color:red;
+        }
+        .thin{
+            font-weight: 200;
+        }
+        .italic{
+            font-style: italic;
+        }
+        .active{
+            letter-spacing: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1 class="red"> 这是一个大到令人发指的h1</h1>
+        <!-- 直接传递一个数组 -->
+        <h1 v-bind:class="['thin','italic']"> 这是一个大到令人发指的h1</h1>        
+        <!-- 在数组中使用三元表达式 -->
+        <h1 v-bind:class="['thin','italic',flag==true?'active':'']"> 这是一个大到令人发指的h1</h1>        
+        <!-- 在数组中使用对象 -->
+        <h1 v-bind:class="['thin','italic',{active:flag}]"> 这是一个大到令人发指的h1</h1>
+        <!-- 直接使用对象 -->
+        <h1 v-bind:class="{thin:true,italic:true,active:flag}"> 这是一个大到令人发指的h1</h1>
+        <h1 v-bind:class="classObj"> 这是一个大到令人发指的h1</h1>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                flag:true,
+                classObj:{thin:true,italic:true,active:true}
+            },
+            methods:{
+                
+            }
+        })
+    </script>
+</body>
+</html>
